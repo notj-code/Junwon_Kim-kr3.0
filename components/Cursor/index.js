@@ -1,42 +1,51 @@
 import React, { useEffect, useState } from "react";
-import CustomCursor from "custom-cursor-react";
-import "custom-cursor-react/dist/index.css";
 import { useTheme } from "next-themes";
 
 const Cursor = () => {
-  const theme = useTheme();
-  const [mount, setMount] = useState();
-
-  const getCusomColor = () => {
-    if (theme.theme === "dark") {
-      return "#fff";
-    } else if (theme.theme === "light") {
-      return "#000";
-    }
-  };
+  const { theme } = useTheme();
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isHoveringLink, setIsHoveringLink] = useState(false);
 
   useEffect(() => {
-    setMount(true);
+    const onMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const onMouseEnter = () => setIsHoveringLink(true);
+    const onMouseLeave = () => setIsHoveringLink(false);
+
+    document.addEventListener("mousemove", onMouseMove);
+    const links = document.querySelectorAll(".link");
+    links.forEach((link) => {
+      link.addEventListener("mouseenter", onMouseEnter);
+      link.addEventListener("mouseleave", onMouseLeave);
+    });
+
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      links.forEach((link) => {
+        link.removeEventListener("mouseenter", onMouseEnter);
+        link.removeEventListener("mouseleave", onMouseLeave);
+      });
+    };
   }, []);
-  return (
-    <>
-      {mount && (
-        <CustomCursor
-          targets={[".link"]}
-          customClass="custom-cursor"
-          dimensions={30}
-          fill={getCusomColor()}
-          smoothness={{
-            movement: 0.2,
-            scale: 0.1,
-            opacity: 0.2,
-          }}
-          targetOpacity={0.5}
-          targetScale={2}
-        />
-      )}
-    </>
-  );
+
+  const cursorStyle = {
+    position: "fixed",
+    top: position.y,
+    left: position.x,
+    width: isHoveringLink ? "60px" : "30px",
+    height: isHoveringLink ? "60px" : "30px",
+    backgroundColor: theme === "dark" ? "#fff" : "#000",
+    borderRadius: "50%",
+    pointerEvents: "none",
+    transform: "translate(-50%, -50%)",
+    transition: "width 0.2s, height 0.2s",
+    zIndex: 9999,
+    opacity: isHoveringLink ? 0.5 : 1,
+  };
+
+  return <div style={cursorStyle} />;
 };
 
 export default Cursor;
