@@ -74,27 +74,27 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
             >
               {!isBlog ? (
                 <div className="grid grid-cols-1">
-                  <Button onClick={handleWorkScroll}>Work</Button>
-                  <Button onClick={handleAboutScroll}>About</Button>
+                  <Button onClick={handleWorkScroll}>프로젝트</Button>
+                  <Button onClick={handleAboutScroll}>소개</Button>
                   {showBlog && (
                     <Button onClick={() => router.push("/blog")}>블로그</Button>
                   )}
                   {showResume && (
                     <Button onClick={() => router.push("/resume")}>
-                      Resume
+                      이력
                     </Button>
                   )}
 
                   <Button
                     onClick={() => window.open("mailto:hello@chetanverma.com")}
                   >
-                    Contact
+                    연락처
                   </Button>
                 </div>
               ) : (
                 <div className="grid grid-cols-1">
                   <Button onClick={() => router.push("/")} classes="first:ml-1">
-                    Home
+                    홈
                   </Button>
                   {showBlog && (
                     <Button onClick={() => router.push("/blog")}>블로그</Button>
@@ -104,14 +104,14 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                       onClick={() => router.push("/resume")}
                       classes="first:ml-1"
                     >
-                      Resume
+                      이력
                     </Button>
                   )}
 
                   <Button
                     onClick={() => window.open("mailto:hello@chetanverma.com")}
                   >
-                    Contact
+                    연락처
                   </Button>
                 </div>
               )}
@@ -132,8 +132,8 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
         </h1>
         {!isBlog ? (
           <div className="flex">
-            <Button onClick={handleWorkScroll}>Work</Button>
-            <Button onClick={handleAboutScroll}>About</Button>
+            <Button onClick={handleWorkScroll}>프로젝트</Button>
+            <Button onClick={handleAboutScroll}>소개</Button>
             {showBlog && (
               <Button onClick={() => router.push("/blog")}>블로그</Button>
             )}
@@ -142,12 +142,12 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                 onClick={() => router.push("/resume")}
                 classes="first:ml-1"
               >
-                Resume
+                이력
               </Button>
             )}
 
             <Button onClick={() => window.open("mailto:hello@chetanverma.com")}>
-              Contact
+              연락처
             </Button>
             {mounted && theme && data.darkMode && (
               <Button
@@ -164,7 +164,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
           </div>
         ) : (
           <div className="flex">
-            <Button onClick={() => router.push("/")}>Home</Button>
+            <Button onClick={() => router.push("/")}>홈</Button>
             {showBlog && (
               <Button onClick={() => router.push("/blog")}>블로그</Button>
             )}
@@ -173,12 +173,12 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                 onClick={() => router.push("/resume")}
                 classes="first:ml-1"
               >
-                Resume
+                이력
               </Button>
             )}
 
             <Button onClick={() => window.open("mailto:hello@chetanverma.com")}>
-              Contact
+              연락처
             </Button>
 
             {mounted && theme && data.darkMode && (

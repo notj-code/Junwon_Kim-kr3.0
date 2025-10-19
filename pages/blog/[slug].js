@@ -29,7 +29,7 @@ const BlogPost = ({ post }) => {
   return (
     <>
       <Seo
-        title={`Blog - ${post.title}`}
+        title={`블로그 - ${post.title}`}
         description={post.preview}
         ogImage={post.image}
         ogUrl={`${siteUrl}/blog/${post.slug}`}
